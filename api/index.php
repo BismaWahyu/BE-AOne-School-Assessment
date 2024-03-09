@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UsersController;
 
 require __DIR__.'/../vendor/autoload.php';
 
@@ -15,6 +16,9 @@ $response = tap($kernel->handle(
 ))->send();
 
 $kernel->terminate($request, $response);
+
+Route::get('/users', [UsersController::class, 'index']);
+Route::get('/users/{id}', [UsersController::class, 'show']);
 
 // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 //     // Handle GET request
